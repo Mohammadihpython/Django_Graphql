@@ -35,9 +35,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'graphene_django',
-    'book.apps.BookConfig',
 
+    # local pp
+    'book.apps.BookConfig',
+    'quiz.apps.QuizConfig',
+    'account.apps.AccountConfig',
+    # Third party
+    'graphene_django',
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
+    'graphql_auth',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -132,3 +139,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GRAPHENE = {
     "SCHEMA": "book.schema.schema"
 }
+AUTH_USER_MODEL = 'account.CustomUser'
+
+GRAPHENE = {
+    'SCHEMA': 'account.schema.schema',
+    "MIDDLEWARE": [
+        "graphql_jwt.middleware.JSONWebTokenMiddleware",
+    ],
+}
+GRAPHQL_JWT = {
+    "JWT_ALLOW_ANY_CLASSES": [
+        "graphql_auth.mutations.Register",
+        "graphql_auth.mutations.VerifyAccount",
+        "graphql_auth.mutations.ObtainJSONWebToken",
+
+    ],
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_LONG_RUNNING_REFRESH_TOKEN": True
+}
+
+AUTHENTICATION_BACKENDS = [
+    # "graphql_jwt.backends.JSONWebTokenBackend",
+    'graphql_auth.backends.GraphQLAuthBackend',
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
