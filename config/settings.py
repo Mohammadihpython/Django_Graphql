@@ -38,8 +38,12 @@ INSTALLED_APPS = [
 
     # local pp
     'book.apps.BookConfig',
-    'quiz.apps.QuizConfig',
     'account.apps.AccountConfig',
+    'product.apps.ProductConfig',
+    'cart.apps.CartConfig',
+    'order.apps.OrderConfig',
+    'comment.apps.CommentConfig',
+    'graph',
     # Third party
     'graphene_django',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
@@ -83,7 +87,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'graphql',
+        'NAME': 'shopgraphql',
         'USER': 'hamed',
         'PASSWORD': 'Hmah8013',
         'HOST': '127.0.0.1',
@@ -142,7 +146,7 @@ GRAPHENE = {
 AUTH_USER_MODEL = 'account.CustomUser'
 
 GRAPHENE = {
-    'SCHEMA': 'account.schema.schema',
+    'SCHEMA': "graph.schema.schema",
     "MIDDLEWARE": [
         "graphql_jwt.middleware.JSONWebTokenMiddleware",
     ],
