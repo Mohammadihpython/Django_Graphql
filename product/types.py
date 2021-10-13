@@ -28,6 +28,11 @@ class ProductType(DjangoObjectType):
                   'option_status',
                   'like_count',
                   "image", 'price',)
+        filter_fields = {
+            'name': ['exact', 'icontains', 'istartswith'],
+            'price': ['exact'],
+        }
+
         interfaces = (relay.Node,)
         total_price = graphene.String()
 
@@ -41,6 +46,11 @@ class VariantType(DjangoObjectType):
     class Meta:
         model = variants
         fields = '__all__'
+        filter_fields = {
+            'name': ['exact', 'icontains', 'istartswith'],
+            'price': ['exact'],
+        }
+
         interfaces = (relay.Node,)
 
 

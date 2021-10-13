@@ -1,13 +1,16 @@
 import graphene
+from graphene import relay
+from graphene_django.filter import DjangoFilterConnectionField
+
 from .types import ProductType, VariantType
 from product.models import Products, variants
 
 
 class ProductQuery(graphene.ObjectType):
-    products = graphene.List(ProductType)
-    product = graphene.Field(ProductType, pk=graphene.ID())
-
     product_variants = graphene.List(VariantType, pk=graphene.ID())
+    product = relay.Node.Field(ProductType)
+    all_products = DjangoFilterConnectionField(ProductType,
+                                     )
 
     def resolve_products(root, info):
         # query a list of product
