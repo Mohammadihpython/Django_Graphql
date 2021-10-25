@@ -18,7 +18,7 @@ class Order(models.Model):
 
     def __str__(self):
         return self.f_name
-
+    @property
     def get_price(self):
         total = sum(i.price() for i in self.order_item.all())
         if self.discount:

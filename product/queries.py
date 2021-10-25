@@ -9,10 +9,9 @@ from product.models import Products, variants
 class ProductQuery(graphene.ObjectType):
     product_variants = graphene.List(VariantType, pk=graphene.ID())
     product = relay.Node.Field(ProductType)
-    all_products = DjangoFilterConnectionField(ProductType,
-                                     )
+    all_products = DjangoFilterConnectionField(ProductType)
 
-    def resolve_products(root, info):
+    def resolve_all_products(root, info):
         # query a list of product
         return Products.objects.all()
 

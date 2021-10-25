@@ -1,14 +1,14 @@
 
 from graphene import relay
 from django.contrib.auth import get_user_model
-from cart.models import Cart
+from cart.models import Comment
 
 from graphene_django import DjangoObjectType
 
 user = get_user_model()
 
 
-class CartType(DjangoObjectType):
+class CommentType(DjangoObjectType):
     class Meta:
-        model = Cart
+        model = Comment
         interfaces = (relay.Node,)

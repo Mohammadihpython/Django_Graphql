@@ -10,7 +10,7 @@ class Query(UserQuery, MeQuery, ProductQuery, graphene.ObjectType):
     pass
 
 
-class Mutation(ProductMutations,AuthMutation,  graphene.ObjectType):
+class Mutation(ProductMutations, AuthMutation, graphene.ObjectType):
     pass
 
 

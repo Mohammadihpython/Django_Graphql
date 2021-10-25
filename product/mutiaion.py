@@ -90,7 +90,7 @@ class UpdateProduct(graphene.Mutation):
     #
 
     @login_required
-    def mutate(root, info, product_id,**updated_data ):
+    def mutate(root, info, product_id, **updated_data):
         name = input.name
         category = input.category
         quantity = input.quantity
@@ -114,12 +114,12 @@ class UpdateProduct(graphene.Mutation):
             # product.description = description if description is not None else product.description,
             # product.option_status = option_status if option_status is not None else product.option_status,
             # product.save()
-            return UpdateProduct(product=product,response={'status': 'success', 'message': 'product updated successfully'})
+            return UpdateProduct(product=product, response={'status': 'success', 'message': 'product updated successfully'})
 
-           # product.name=update_data.name if update_data.name is not None else product.name
+            #  product.name=update_data.name if update_data.name is not None else product.name
 
         except Products.DoesNotExist:
-              return UpdateProduct(response={'status': 'error', 'message': 'product dose not exist'})
+            return UpdateProduct(response={'status': 'error', 'message': 'product dose not exist'})
 
 
 class ProductMutations(graphene.ObjectType):

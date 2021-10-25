@@ -27,10 +27,9 @@ class ProductType(DjangoObjectType):
                   'discount',
                   'option_status',
                   'like_count',
-                  "image", 'price',)
+                  'image','price')
         filter_fields = {
-            'name': ['exact', 'icontains', 'istartswith'],
-            'price': ['exact'],
+            'name': ['exact', 'icontains', 'istartswith'],        
         }
 
         interfaces = (relay.Node,)
@@ -48,7 +47,7 @@ class VariantType(DjangoObjectType):
         fields = '__all__'
         filter_fields = {
             'name': ['exact', 'icontains', 'istartswith'],
-            'price': ['exact'],
+         
         }
 
         interfaces = (relay.Node,)
